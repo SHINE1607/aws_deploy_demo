@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fo nts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+  <script>
+    function cardio() {
+      window.location.replace("/cardio");
+    }
+
+    function dota() {
+      window.location.replace("/dota");
+    }
+
+    function house() {
+      window.location.replace("/house");
+    }
+</script>
+
+  <style>
+
+    *{
+      font-family: 'Montserrat';
+
+    }
+   .alert{
+      width : 60vw;
+      height: 20vh;
+      border:0;
+      overflow :hidden;
+   }
+
+   .alert-custom{
+    background-color:  #1b5bbf;
+    color:#01ffa4 ;
+}
+  .btn{
+    width : 20vw;
+  }
+
+  .cardio-btn:hover{
+    background-color: #1ec7ab  !important;
+    overflow:hidden;
+    
+
+    
+  }
+  .btn{
+    height:2.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border:0;
+    transition: 0.2s;
+    animation:head-animation;
+    animation-delay:0.5;
+    animation-duration: 0.5s;
+  }
+
+  .btn:hover{
+    padding:1em;
+
+  }
+
+  .btn:focus{
+    outline:none !important;
+  }
+
+  .dota-btn:hover{
+    background-color: #1f2d41  !important;
+  }
+
+  .house-btn:hover{
+    background-color: #161e20  !important;
+
+  }
+
+  
+
+  .image{
+    float:right;
+    height:30vh;
+    margin-top:-15vh;
+    margin-right:-5vw;
+  }
+
+  .image-heart{
+    float:right;
+    height:7em;
+    margin-top:-3em;
+
+
+  }
+  .heading {
+    animation:head-animation;
+    animation-duration: 0.5s;
+  }
+
+  
+  .btn:active{
+    transform:scale(0.97, 0.97);
+    border:0;
+    outline:0 !important ;
+  }
+
+  .image-bg{
+  height:70vh;
+  margin-top:-20vh;
+  float:right;
+  margin-right:-10vw;
+  opacity:0.5;
+  animation: head-animation;
+  animation-duration: 0.5s;
+}
+
+.intro-class {
+  animation:intro;
+  color:white;
+  animation-duration:0.8s;
+  transition-timing-function: ease-in;
+
+}
+
+@keyframes intro {
+  0%{
+    margin-top:10vh;
+    font-size:0;
+    right:0;
+    left:0;
+  }50%{
+    font-size:1000%;
+  }100%{
+    right:10vw;
+    }
+}
+
+  @keyframes head-animation{
+    0% {
+      
+      opacity:0.5;
+      transform:scale(0.95, 0.95);
+      
+    }
+    100%{
+      opacity:100%;
+      transform:scale(1,1);
+    }
+    
+  }
+  a{
+  color:white;
+}
+a:hover{
+  color:white;
+}
+a:active {
+  color:white;
+}
+a:focus{
+  color:white;
+}
+
+  </style>
+
+</head>
+
+<body style = "background-color: #181e31; height:100vh; overflow:hidden">
+  <nav class="navbar navbar-dark" style="background-color: #303850;color:white">
+    <a href = "https://github.com/SHINE1607"  target="_blank"><span class="navbar-brand mb-0 h1" style = "font-size:90%;">Shine Mohammed</span></a>
+    <button type="submit " class="  btn btn-primary px-4" style = "background-color: #01ffa4 ; border:0; color:#161e20; width:10em;font-size:80%; height:3em"><p style = "margin:0 1em 0 1em ">Readme</p></button>
+  </nav>
+  <!-- <div class = "d-flex justify-content-center " style = "margin-top:40vh">
+    <h1 class = "intro-class" style = "font-size:1000%; position:relative;right:10vw;">i</h1>
+  </div> -->
+
+<div class = "d-flex justify-content-center heading" style = "margin-top: 10vw;">
+    <div class="alert alert-primary alert-custom" role="alert">
+      <h3>
+        Ineuron Hackathon(Machine Learning)
+        <p style = "font-size: 50%;">Bundle 2</p>
+        <img class = "image"  src = "https://kit8.net/images/detailed/4/data_centre.png" alt="Girl in a jacket" />
+      </h3>
+      
+      
+    </div>
+  </div>
+  <div class = "d-flex justify-content-center" style = "margin:10px; width:59vw;" >
+    <button type="button" class="btn cardio-btn primary" style = "background-color: #303850; transition-duration: 0.3s; color:white; height:5em; overflow:hidden;" onClick="cardio();"
+    ><p style =  "position:relative; top:2em;right:5em; font-size: 80%;">Cardio Vascular</p>
+    <img class = "image-heart"  src = "https://images.vexels.com/media/users/3/143163/isolated/preview/ae18c910a8eb51d9c115207fd56c1ad4-heart-human-organ-by-vexels.png" alt="Girl in a jacket" />
+  </button>
+
+  </div>
+  <div class = "d-flex justify-content-center"  style = "margin:10px;  width:59vw;">
+    <button type="button" class="btn dota-btn" style = "background-color: #2b3f5a;transition-duration: 0.3s; color:white; height:5em;overflow:hidden" onClick = "dota();">
+      <p style =  "position:relative; top:2em;right:5em; font-size: 80%;">Dota prediction</p>
+      <img class = "image-heart"  src = "https://1.bp.blogspot.com/-nZWHxn-N72Q/XIafjdKz3HI/AAAAAAAAImo/dldCM94NHqw6r50tC9v-UnTt9xHocb7eACK4BGAYYCw/s1600/icon%2Bgame%2Bvideo.png" alt="Girl in a jacket" />
+    </button>
+
+  </div>
+  <div class = "d-flex justify-content-center" style = "margin:10px;  width:59vw;">
+    <button type="button" class="btn house-btn" style = "background-color:  #233134; transition-duration: 0.3s; color:white; height:5em; overflow:hidden" onClick = "house();">
+      <p style =  "position:relative; top:2em;right:5em; font-size: 80%;">House Rent prediction</p>
+      <img class = "image-heart"  src = "https://images.vexels.com/media/users/3/128105/isolated/preview/dc1ccf636ee9507ca3b3756564be4660-isometric-flat-house-building-by-vexels.png" alt="Girl in a jacket" />
+
+    </button>
+
+  </div>
+
+  <img class = "image-bg"  src = "https://developers.arcgis.com/assets/img/features/features-hero_offline.png" alt="Girl in a jacket" />
+
+  
+
+ 
+
+</body>
+</html>

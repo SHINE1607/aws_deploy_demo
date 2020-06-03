@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fo nts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<style>
+
+*{
+      font-family: 'Montserrat';
+      font-size:100%;
+
+    }
+  .form-group{
+    width : 10vw;
+    
+  }
+
+  
+  .form-control {
+    background-color : #303850 ;
+    border :0;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+    height:4em;
+    animation:head-animation;
+    animation-duration: 0.5s;
+    box-shadow: none!important;
+  }
+  .form-cotrol:active{
+    background-color:#303850  ;
+    color:white;
+  }
+  .form-control:hover{
+    padding:0.5em;
+  }
+  .form-control:focus{
+    background-color : #252b3d ;
+    color: rgb(21, 37, 51) ;
+    color:white;
+    outline : none !important;
+    
+  }
+
+  
+  .form-control::placeholder {
+  color: #b9b9b9;
+}
+  
+
+  
+.alert-heading{
+  width : 60vw;
+  height: 20vh;
+  border:0;
+  overflow :hidden;
+  animation:head-animation;
+  animation-duration: 0.5s;
+   
+}
+
+.image-heart{
+  height:80vh;
+  margin-top:-15vh;
+  float:right;
+  margin-right:-35vw;
+  opacity:0.5;
+  animation:image-animation;
+  animation-duration: 0.5s;
+}
+
+@keyframes image-animation {
+  from {
+      opacity:0;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:50%;
+      transform:scale(1,1);
+    }
+}
+
+.image{
+    float:right;
+    height:30vh;
+    margin-top:-15vh;
+    margin-right:-5vw;
+    
+  }
+
+  
+  .btn:active{
+    transform:scale(0.97, 0.97);
+    border:0;
+    outline:0 !important;
+  }
+
+
+  @keyframes head-animation{
+    from {
+      opacity:0.5;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:100%;
+      transform:scale(1,1);
+    }
+  }
+
+  a{
+  color:white;
+}
+a:hover{
+  color:white;
+}
+a:active {
+  color:white;
+}
+a:focus{
+  color:white;
+}
+.wrapper{
+    display:none;
+    width:300px;
+    height:60px;
+    float:left;
+    margin-left:5em;
+    transform: translate(-50%, -50%);
+    
+}
+.circle{
+    width:10px;
+    height:10px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    left:15%;
+    transform-origin: 50%;
+    animation: circle .5s alternate infinite ease;
+}
+
+@keyframes circle{
+    0%{
+        top:60px;
+        height:5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+    40%{
+        height:20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+    100%{
+        top:0%;
+    }
+}
+.circle:nth-child(2){
+    left:45%;
+    animation-delay: .2s;
+}
+.circle:nth-child(3){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+}
+.shadow{
+    width:20px;
+    height:4px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top:62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left:15%;
+    filter: blur(1px);
+    animation: shadow .5s alternate infinite ease;
+}
+
+@keyframes shadow{
+    0%{
+        transform: scaleX(1.5);
+    }
+    40%{
+        transform: scaleX(1);
+        opacity: .7;
+    }
+    100%{
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+}
+.shadow:nth-child(4){
+    left: 45%;
+    animation-delay: .2s
+}
+.shadow:nth-child(5){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+}
+.wrapper span{
+    position: absolute;
+    top:75px;
+    font-family: 'Lato';
+    font-size: 20px;
+    letter-spacing: 12px;
+    color: #fff;
+    left:15%;
+}
+
+  
+</style>
+file_upload = 0
+<script type="text/javascript" >
+ file_upload_flag = 0;
+ function route() {
+        // window.location = 'http://ec2-3-6-92-45.ap-south-1.compute.amazonaws.com:8080/';
+        window.location = "/"
+    }
+
+function route_cardio_readme() {
+
+  window.location = "/cardio/cardio_readme"
+  
+
+}
+
+
+
+  function toggle_loading() {
+    if(file_upload == 1){
+      console.log("shine is the best")
+      wrapper = document.getElementsByClassName('wrapper');
+      for (i = 0; i < wrapper.length; i++){
+        wrapper[i].style.display = 'block';
+    }
+      
+}
+    
+}
+
+
+// #function to  chec the uploaded file is csv  
+function check_file_upload(file){
+  if(file == "") {
+    alert("No file has been selected!!")
+  }
+  else{ 
+    file_upload = 1
+    file_extension = file.replace(/^.*\./, '');
+    if(file_extension != "csv"){
+      alert("File uploaded is not csv")
+    }
+  }
+}
+
+</script>
+</head>
+<body style = "background-color: #181e31; overflow:hidden; width:100vw;overflow-x: hidden;">
+  <nav class="navbar navbar-dark" style="background-color: #303850;color:white">
+    <a href = "https://github.com/SHINE1607"  target="_blank"><span class="navbar-brand mb-0 h1" style = "font-size:90%">Shine Mohammed</span></a>
+    <button type="submit " class="  btn btn-primary px-4" style = "background-color: #01ffa4 ; border:0; color:#161e20; font-size:80%; height:3em" onClick='route_cardio_readme()'><p style = "margin:0 1em 0 1em ">Data Description</p></button>
+
+  </nav>
+  <div class = "d-flex justify-content-center" style = "margin-top: 3vh;">
+  <div class="alert alert-heading alert-primary alert-custom" role="alert">
+    <h3>
+      Cardio vascular Disease Prediction 
+      <p style = "font-size: 50%;">Bundle 2</p>
+      <p style = "font-size: 40%">The application classifies the patients to be healthy or suffering from cardiovascular disease based on the given attributes.
+        The underlying machine learning model predicts cardiovascular disease accounting a number of features as input.</p>
+      <img class = "image"  src = "https://images.vexels.com/media/users/3/143163/isolated/preview/ae18c910a8eb51d9c115207fd56c1ad4-heart-human-organ-by-vexels.png" alt="Girl in a jacket" />
+      <h4 style= "margin-top:1em; color:rgb(187, 70, 70)">{{prediction_text_safe}}</h4>
+    </h3>
+    <div class="wrapper" style ="float:left;">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div style = "color:black">YOur predicted csv file will be downloaded automatically</div>
+      
+  </div>
+  
+
+
+
+    
+  </div>
+  </div>
+    
+
+    <div class="container py-5" >
+      <div class="row">
+          <div class="col-lg-8 mx-auto">
+              <form class = "text-center" action="/cardio/predict" method="post">
+                  <div class="form-group row" style = "width :100%;text-align:center">
+                      <div class="col-sm-6" >
+                          <input type="number" name = "age" class="form-control"  placeholder="Age(days)" required = "required"   style = "width:20em;height:100%">
+                      </div>
+                      <div class="col-sm-6">
+                        
+                          <!-- <label  for = "inputState" style = "margin-left:10vw; color:white;font-size: 70%;margin-bottom:0.4em">Gender</label>
+                          <select type = "number" class="form-control" id="inputState"  style = "width :10em; margin-left:10vw">
+                            <option>0</option>
+                            <option>1</option>
+                            
+                          </select>
+                         -->
+                          <label style = "color:white; font-size: 70%;float:left; margin:0">Gender</label>>
+                          <select name = "gender" id="inputState" class="form-control" style = "height:2em;">
+                          <option>1</option>
+                          <option>2</option>
+                          
+                        </select> 
+                      </div>
+                  </div>
+                  <div class="form-group row" style = "width :100%;text-align:center">
+                      <div class="col-sm-6">
+                          <input type="text"  name = "height" class="form-control"  placeholder="Height in cm" required = "required"  style = "width:20em;height:100%">
+                      </div>
+                      <div class="col-sm-6">
+                          <input type = "text" name = "weight" class="form-control" placeholder="Weight in kgs" required = "required"  style = "width:20em;height:100%" 
+                          >
+                      </div>
+                  </div>
+                  <div class="form-group row" style = "width :100%;text-align:center">
+                      <div class="col-sm-6">
+                          <input type="number" name = "ap_hi" class="form-control"  placeholder="Systolic blood pressure" required = "required"  style = "width:20em;height:100%">
+                      </div>
+                      
+                      <div class="col-sm-6">
+                          <input type="number" name = "ap_lo" class="form-control" id="inputPostalCode" placeholder="Diastolic blood pressur" required = "required"  style = "width:20em;height:100%">
+                      </div>
+                  </div>
+                  <div class="form-group row" style = "width :100%;text-align:center">
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Cholestrol</label>>
+                        <select name = "cholestrol" id="inputState" class="form-control" style = "height:2em;">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select> 
+                      </div>
+                      
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Glucose</label>>
+                        <select name = "glucose_level" id="inputState" class="form-control" style = "height:2em;">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select> 
+                      </div>
+                  </div>
+                  <div class="form-group row" style = "width :100%;text-align:center">
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Smoking</label>>
+                        <select name = "smoking" id="inputState" class="form-control" style = "height:2em;">
+                        <option>0</option>
+                        <option>1</option>
+                        
+                      </select> 
+                      </div>
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Alchohol</label>>
+                        <select name = "alchohol" id="inputState" class="form-control" style = "height:2em;">
+                        <option>0</option>
+                        <option>1</option>
+                        
+                        
+                      </select>                       </div>
+                  </div>
+                  <div class="form-group row" style = "width :100%;text-align:center" >
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Active</label>>
+                        <select name = "Active" id="inputState" class="form-control" style = "height:2em;">
+                        <option>0</option>
+                        <option>1</option>
+                        
+                        
+                      </select>                     
+                    
+                    </div>
+                    
+                </div>
+                
+                  <button type="submit " class="btn btn-primary px-4" style = "background-color: #01ffa4; border:0; color :rgb(21, 37, 51);">Predict</button>
+                  <button  class="btn" style = "background-color:Transparent; border: 0.05em solid #01ffa4; color:#01ffa4" onClick='route()'>Go home</button>
+                    
+                </form>
+                <br>
+                <div class="alert alert-primary" role="alert" style ="background-color: #303850; border:0">
+                  <p style ="color:white;font-size:80%">
+                   Upload bulk data as csv  
+                    <!-- <form class="form-group row" style = "color:white;font-size:80%;margin-left:0.05em;" action = "/cardio/predict"  method="post"  enctype="multipart/form-data">
+                  
+                      <input type="file" style = "width:30em" class="form-control-file" id="exampleFormControlFile1" id = "upload" accept=".csv" onchange = "check_csv(this.value);"></button>
+                      
+                      <button type="submit " value = "upload" class="btn btn-primary px-4" style = "background-color: #01ffa4; border:0; color :rgb(21, 37, 51);font-size:80%; margin-top:0.4em">Predict</button>
+                    </form> -->
+                  <form  enctype="multipart/form-data" style  = "color:white" action="/cardio/predict" method="post">
+                    <input type="file" name="file" accept=".csv"  onchange = "check_file_upload(this.value)" required = "required">
+                    <input id="submit_button" class = "btn"  type="submit" value="Submit"   onclick="toggle_loading()" style = "background-color: #01ffa4; border:0; color :rgb(21, 37, 51);">
+                  </form>
+                  
+                  </p>
+                  
+              
+                  
+                </div>
+               
+              
+          </div>
+      </div>  
+
+     <!-- Main Input For Receiving Query to our ML -->
+   
+
+   <br>
+   <br>
+   
+   
+
+ </div>
+ <img class = "image-heart"  src = "https://images.vexels.com/media/users/3/143163/isolated/preview/ae18c910a8eb51d9c115207fd56c1ad4-heart-human-organ-by-vexels.png" alt="Girl in a jacket" />
+</body>
+</html>

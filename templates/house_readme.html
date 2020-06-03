@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fo nts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<style>
+
+*{
+      font-family: 'Montserrat';
+      font-size:100%;
+      color:white;
+
+    }
+  .form-group{
+    width : 10vw;
+    
+  }
+
+  
+  .form-control {
+    background-color : #303850 ;
+    border :0;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+    height:4em;
+    animation:head-animation;
+    animation-duration: 0.5s;
+    box-shadow: none!important;
+  }
+  .form-cotrol:active{
+    background-color:#303850  ;
+    color:white;
+  }
+  .form-control:hover{
+    padding:0.5em;
+  }
+  .form-control:focus{
+    background-color : #252b3d ;
+    color: rgb(21, 37, 51) ;
+    color:white;
+    outline : none !important;
+    
+  }
+
+  
+  .form-control::placeholder {
+  color: #b9b9b9;
+}
+  
+
+  
+.alert-heading{
+  width : 30vw;
+  height: 10vh;
+  border:0;
+  overflow :hidden;
+  animation:head-animation;
+  animation-duration: 0.5s;
+  margin-top : 2vh;
+  margin-left:2vw;
+   
+}
+
+.image-heart{
+  height:80vh;
+  margin-top:-15vh;
+  float:right;
+  margin-right:-35vw;
+  opacity:0.5;
+  animation:image-animation;
+  animation-duration: 0.5s;
+}
+
+@keyframes image-animation {
+  from {
+      opacity:0;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:50%;
+      transform:scale(1,1);
+    }
+}
+
+.image{
+    float:right;
+    height:18vh;
+    margin-top:-10vh;
+    margin-right:-2vw;
+    
+  }
+
+  
+  .btn:active{
+    transform:scale(0.97, 0.97);
+    border:0;
+    outline:0 !important;
+  }
+
+
+  @keyframes head-animation{
+    from {
+      opacity:0.5;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:100%;
+      transform:scale(1,1);
+    }
+  }
+
+  a{
+  color:white;
+}
+a:hover{
+  color:white;
+}
+a:active {
+  color:white;
+}
+a:focus{
+  color:white;
+}
+* {
+    color:white;
+}
+  
+</style>
+<script>
+ 
+ function route() {
+        // window.location = 'http://ec2-3-6-92-45.ap-south-1.compute.amazonaws.com:8080/';
+        window.location = "/"
+    }
+
+function route_house() {
+
+  window.location = "/house"
+  
+
+}
+
+</script>
+</head>
+<body style = "background-color: #181e31; overflow:hidden; width:100vw;">
+  
+  <div class = "d-flex" style = "margin-top: 1vh;">
+  <div class="alert alert-heading alert-primary alert-custom"  role="alert">
+    <h4>
+      House Rent Prediction
+      <p style = "font-size: 50%;">Bundle 2</p>
+      
+      <img class = "image"  src = "https://images.vexels.com/media/users/3/128105/isolated/preview/dc1ccf636ee9507ca3b3756564be4660-isometric-flat-house-building-by-vexels.png">
+    </h4>
+    
+
+    
+  </div>
+  </div>
+
+  <br>
+   <button type="submit " class="btn " style = "background-color: #01ffa4 ; border:0; color:#161e20; font-size:80%; height:3em; margin-left:2vw" onClick='route_house()'><p style = "margin:0 1em 0 1em ; color:rgb(21, 37, 51)">Back to prediction</p></button>
+<br>
+  <div class = "table-container" style = "margin-top : 2vh;margin-left:2vw;width:60vw; font-size:80%">
+   
+<br>
+   
+    Data Description 
+    <br>
+    <br>
+
+
+    <table class="table table-borderless table-dark" style = "background-color: #303850;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Attribute</th>
+        <th scope="col">Description</th>
+        <th scope="col">Range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>ID</td>
+        <td>ID of the house</td>
+        <td>no range</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>URL</td>
+        <td>listing url</td>
+        <td>hyper link</td>
+      </tr>
+
+      <tr>
+        <th scope="row">3</th>
+        <td>Region</td>
+        <td>Location</td>
+        <td>valid region</td>
+      </tr>
+
+      <tr>
+        <th scope="row">4</th>
+        <td>Type </td>
+        <td>type of house</td>
+        <td>drop down available</td>
+      </tr>
+
+      <tr>
+        <th scope="row">5</th>
+        <td>Square feet</td>
+        <td>square feet of the house </td>
+        <td>+ve</td>
+      </tr>
+
+      <tr>
+        <th scope="row">6</th>
+        <td>Beds</td>
+        <td>no of bed avaialble</td>
+        <td>+ve</td>
+      </tr>
+
+      <tr>
+        <th scope="row">7</th>
+        <td>Bathrooms</td>
+        <td>NO of bathrooms available</td>
+        <td>+ve</td>
+      </tr>
+
+      <tr>
+        <th scope="row">8</th>
+        <td>Cats allowed </td>
+        <td>are cats alowed in the house</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">9</th>
+        <td>Dogs allowed</td>
+        <td>explicit</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">10</th>
+        <td>smoking allowed</td>
+        <td>explicit </td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">11</th>
+        <td>Wheel chair access</td>
+        <td>explicit</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">12</th>
+        <td>electric vehicle charge</td>
+        <td>explicit</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">13</th>
+        <td>comes furnished</td>
+        <td>explicit</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">14</th>
+        <td>laundry options</td>
+        <td>avaiable laudry facility in the house</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">15</th>
+        <td>parking  options</td>
+        <td>avaiable parking facility in the house</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">16</th>
+        <td>image url</td>
+        <td>hyper linkm for the image url</td>
+        <td>url </td>
+      </tr>
+
+      <tr>
+        <th scope="row">17</th>
+        <td>Description</td>
+        <td>Description of the house</td>
+        <td>text</td>
+      </tr>
+
+      <tr>
+        <th scope="row">18</th>
+        <td>laundry options</td>
+        <td>avaiable laudry facility in the house</td>
+        <td>0 or 1 </td>
+      </tr>
+
+      <tr>
+        <th scope="row">19</th>
+        <td>latitude</td>
+        <td>latitude  of the house</td>
+        <td>numerical</td>
+      </tr>
+
+      <tr>
+        <th scope="row">20</th>
+        <td>longitude </td>
+        <td>longitude of the house</td>
+        <td>number </td>
+      </tr>
+
+      <tr>
+        <th scope="row">21</th>
+        <td>state </td>
+        <td>state to which the house is located </td>
+        <td>state</td>
+      </tr>
+    </tbody>
+  </table>
+
+    
+   
+
+ <img class = "image-heart"  src = "https://images.vexels.com/media/users/3/128105/isolated/preview/dc1ccf636ee9507ca3b3756564be4660-isometric-flat-house-building-by-vexels.png" alt="Girl in a jacket" />
+</body>
+</html>

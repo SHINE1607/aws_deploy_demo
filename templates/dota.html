@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fo nts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<style>
+
+*{
+      font-family: 'Montserrat';
+
+    }
+  .form-group{
+    width : 10vw;
+    
+    
+  }
+
+  
+  .form-control {
+    background-color : #303850 ;
+    border :0;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+    height:3em;
+    animation:head-animation;
+    animation-duration: 0.5s;
+  }
+  .form-cotrol:active{
+    background-color:#303850  ;
+    color:white;
+  }
+  .form-control:hover{
+    padding:0.5em;
+  }
+  .form-control:focus{
+    background-color : #252b3d;
+    color: rgb(21, 37, 51) ;
+    color:white;
+    
+  }
+  .form-control::placeholder {
+  color: #b9b9b9;
+}
+  
+
+  .btn{
+    transition: 0.2s;
+    animation:head-animation;
+    animation-duration: 0.5s;
+
+  }
+  
+
+  
+.alert{
+  border:0;
+  animation:head-animation;
+  animation-duration: 0.5s;
+}
+.image{
+    float:right;
+    height:30vh;
+    margin-top:-15vh;
+    margin-right:-5vw;
+    
+  }
+
+.image-heart{
+  height:100vh;
+  margin-top:-50vh;
+  float:right;
+  margin-right:-30vw;
+  opacity:0.5;
+  animation:image-animation;
+  animation-duration: 0.5s;
+}
+
+.alert-heading{
+  width : 60vw;
+  height: 20vh;
+  border:0;
+  overflow :hidden;
+   
+}
+
+
+.btn:active{
+    transform:scale(0.97, 0.97);
+    border:0;
+    outline:0 !important ;
+  }
+
+
+@keyframes image-animation {
+  from {
+      opacity:0;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:50%;
+      transform:scale(1,1);
+    }
+}
+
+
+@keyframes head-animation{
+    from {
+      opacity:0.5;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:100%;
+      transform:scale(1,1);
+    }
+  }
+
+  a{
+  color:white;
+}
+a:hover{
+  color:white;
+}
+a:active {
+  color:white;
+}
+a:focus{
+  color:white;
+}
+
+.wrapper{
+    display:none;
+    width:100px;
+    height:60px;
+    float:left;
+    margin-left:5em;
+    transform: translate(-50%, -50%);
+    
+}
+.circle{
+    width:10px;
+    height:10px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    left:15%;
+    transform-origin: 50%;
+    animation: circle .5s alternate infinite ease;
+}
+
+@keyframes circle{
+    0%{
+        top:60px;
+        height:5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+    40%{
+        height:20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+    100%{
+        top:0%;
+    }
+}
+.circle:nth-child(2){
+    left:45%;
+    animation-delay: .2s;
+}
+.circle:nth-child(3){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+}
+.shadow{
+    width:20px;
+    height:4px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top:62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left:15%;
+    filter: blur(1px);
+    animation: shadow .5s alternate infinite ease;
+}
+
+@keyframes shadow{
+    0%{
+        transform: scaleX(1.5);
+    }
+    40%{
+        transform: scaleX(1);
+        opacity: .7;
+    }
+    100%{
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+}
+.shadow:nth-child(4){
+    left: 45%;
+    animation-delay: .2s
+}
+.shadow:nth-child(5){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+}
+.wrapper span{
+    position: absolute;
+    top:75px;
+    font-family: 'Lato';
+    font-size: 20px;
+    letter-spacing: 12px;
+    color: #fff;
+    left:15%;
+}
+  
+</style>
+<script>
+ 
+ function route() {
+        // window.location = 'http://ec2-3-6-92-45.ap-south-1.compute.amazonaws.com:8080/';
+        window.location = "/"
+    }
+
+  
+function route_dota_readme() {
+
+window.location = "/dota/dota_readme"
+
+
+}
+
+
+function toggle_loading() {
+    if(file_upload == 1){
+      console.log("shine is the best")
+      wrapper = document.getElementsByClassName('wrapper');
+      for (i = 0; i < wrapper.length; i++){
+        wrapper[i].style.display = 'block';
+    }
+      
+}
+    
+}
+
+
+// #function to  chec the uploaded file is csv  
+function check_file_upload(file){
+  console.log("ehy the fuck its not working???")
+  if(file == "") {
+    alert("No file has been selected!!")
+  }
+  else{ 
+    file_upload = 1
+    file_extension = file.replace(/^.*\./, '');
+    if(file_extension != "csv"){
+      alert("File uploaded is not csv")
+    }
+  }
+}
+
+
+
+</script>
+</head>
+<body style = "background-color: #181e31; overflow:hidden; width:100vw;overflow:scroll;overflow-x: hidden;">
+  <nav class="navbar navbar-dark" style="background-color: #303850;color:white">
+    <a href = "https://github.com/SHINE1607"  target="_blank"><span class="navbar-brand mb-0 h1" style = "font-size:90%">Shine Mohammed</span></a>
+    <button type="submit " class="  btn btn-primary px-4" style = "background-color: #01ffa4 ; border:0; color:#161e20; font-size:80%; height:3em" onClick='route_dota_readme()'><p style = "margin:0 1em 0 1em ">Data Description</p></button>
+
+  </nav>
+  <div class = "d-flex justify-content-center" style = "margin-top: 3vh;">
+    <div class="alert alert-heading alert-primary alert-custom" role="alert">
+      <h3>
+        Dota Game winner prediction
+        <p style = "font-size: 50%;">Bundle 2</p>
+        <p style = "font-size : 40%">
+          Dota 2 is a popular computer game with two teams of 5 players. At the start of the game each player chooses a unique hero with different strengths and weaknesses.
+          The Machine Learning application which predicts the winner based on the given attributes and the hero chosen by the team. Each player in a team can select one Hero that doesnt overlap.
+
+        </p>
+        <h4 style = "margin-top:1em; color:rgb(187, 70, 70)">{{prediction_text_safe}}</h4>
+        <img class = "image"  src = "https://1.bp.blogspot.com/-nZWHxn-N72Q/XIafjdKz3HI/AAAAAAAAImo/dldCM94NHqw6r50tC9v-UnTt9xHocb7eACK4BGAYYCw/s1600/icon%2Bgame%2Bvideo.png" alt="Girl in a jacket" />
+        <div class="wrapper" style ="float:left;">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+    
+          
+      </div>
+      
+      </h3>
+      
+      
+    </div>
+    </div>   
+    
+
+    <div class="container py-5" >
+      <div class="row">
+          <div class="col-lg-8 mx-auto">
+              <form class = "text-center" action="/dota/predict" method="post">
+                  <div class="form-group row text-center justify-content-md-center" style = "width :100%;text-align:center">
+                      <div class="col-sm-6" >
+                          <input type="number" name = "cluster_id" class="form-control"  placeholder="Cluster Id" required = "required"  style = "width:20em;height:100%">
+                      </div>
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Game Mode</label>>
+                        <select name = "game_mode" id="inputState" class="form-control" style = "height:2em;">
+                          <option>0</option>
+                          <option>1</option><option>2</option><option>3</option><option>4</option>
+                          <option>5</option><option>6</option><option>7</option><option>8</option>
+                          <option>9</option>
+                          
+                        </select>                      
+                      </div>
+                  </div>
+                  <div class="form-group row" style = "width :100%;text-align:center">
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Game Type</label>>
+                        <select name = "game_type" id="inputState" class="form-control" style = "height:2em;">
+                          <option>0</option>
+                          <option>1</option><option>2</option><option>3</option>
+                          
+                        </select>                       
+                      </div>
+                     
+                  </div>
+                  <div class="form-group row" style = "margin-left:18%; width : 30vw">
+                    <div class = col-sm-6>
+                      <p style = "color:white; width :10vw;float:left">Team 1</p>
+                    </div>
+                    <div class = col-sm-6>
+                      <p style = "color:white; width :10vw;float:left">Team 2</p>
+                    </div>
+                    
+                      
+                  </div>
+                  <div class="form-group row text-center justify-content-md-center" style = "width :100%;text-align:center">
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Player 1</label>>
+                        <select name = "player_1_1" id="inputState" class="form-control" style = "height:2em;">
+                          <option>1</option>
+                          <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                          <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                          <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                          <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                          <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                          <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                          <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                          <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                          <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                          <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                          <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                          <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                          <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                          <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                          <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                          <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                          <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                          <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                          <option>110</option><option>111</option><option>112</option><option>113</option>
+                          
+                        </select>  
+                      </div>
+                      
+                      <div class="col-sm-6">
+                        <label style = "color:white; font-size: 70%;float:left; margin:0">Player 1</label>>
+                        <select name = "player_2_1" id="inputState" class="form-control" style = "height:2em;">
+                          <option>1</option>
+                          <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                          <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                          <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                          <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                          <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                          <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                          <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                          <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                          <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                          <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                          <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                          <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                          <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                          <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                          <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                          <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                          <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                          <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                          <option>110</option><option>111</option><option>112</option><option>113</option>
+                          
+                        </select>  
+                      </div>
+                  </div>
+
+                  <div class="form-group row text-center justify-content-md-center" style = "width :100%;text-align:center">
+                    <div class="col-sm-6">
+                      <label style = "color:white; font-size: 70%;float:left; margin:0">Player 2</label>>
+                      <select name = "player_1_2" id="inputState" class="form-control" style = "height:2em;">
+                        <option>1</option>
+                        <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                        <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                        <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                        <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                        <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                        <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                        <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                        <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                        <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                        <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                        <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                        <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                        <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                        <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                        <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                        <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                        <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                        <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                        <option>110</option><option>111</option><option>112</option><option>113</option>
+                        
+                      </select>  
+                    </div>
+                    
+                    <div class="col-sm-6">
+                      <label style = "color:white; font-size: 70%;float:left; margin:0">Player 2</label>>
+                      <select name = "player_2_2" id="inputState" class="form-control" style = "height:2em;">
+                        <option>1</option>
+                        <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                        <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                        <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                        <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                        <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                        <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                        <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                        <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                        <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                        <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                        <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                        <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                        <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                        <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                        <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                        <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                        <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                        <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                        <option>110</option><option>111</option><option>112</option><option>113</option>
+                        
+                      </select>  
+                    </div>
+                </div>
+
+                <div class="form-group row text-center justify-content-md-center" style = "width :100%;text-align:center">
+                  <div class="col-sm-6">
+                    <label style = "color:white; font-size: 70%;float:left; margin:0">Player 3</label>>
+                    <select name = "player_1_3" id="inputState" class="form-control" style = "height:2em;">
+                      <option>1</option>
+                      <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                      <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                      <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                      <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                      <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                      <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                      <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                      <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                      <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                      <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                      <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                      <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                      <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                      <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                      <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                      <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                      <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                      <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                      <option>110</option><option>111</option><option>112</option><option>113</option>
+                      
+                    </select>  
+                  </div>
+                  
+                  <div class="col-sm-6">
+                    <label style = "color:white; font-size: 70%;float:left; margin:0">Player 3</label>>
+                    <select name = "player_2_3" id="inputState" class="form-control" style = "height:2em;">
+                      <option>1</option>
+                      <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                      <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                      <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                      <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                      <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                      <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                      <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                      <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                      <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                      <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                      <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                      <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                      <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                      <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                      <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                      <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                      <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                      <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                      <option>110</option><option>111</option><option>112</option><option>113</option>
+                      
+                    </select>  
+                  </div>
+              </div>
+
+              <div class="form-group row text-center justify-content-md-center" style = "width :100%;text-align:center">
+                <div class="col-sm-6">
+                  <label style = "color:white; font-size: 70%;float:left; margin:0">Player 4</label>>
+                  <select name = "player_1_4" id="inputState" class="form-control" style = "height:2em;">
+                    <option>1</option>
+                    <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                    <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                    <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                    <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                    <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                    <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                    <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                    <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                    <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                    <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                    <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                    <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                    <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                    <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                    <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                    <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                    <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                    <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                    <option>110</option><option>111</option><option>112</option><option>113</option>
+                    
+                  </select>  
+                </div>
+                
+                <div class="col-sm-6">
+                  <label style = "color:white; font-size: 70%;float:left; margin:0">Player 4</label>>
+                  <select name = "player_2_4" id="inputState" class="form-control" style = "height:2em;">
+                    <option>1</option>
+                    <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                    <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                    <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                    <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                    <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                    <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                    <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                    <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                    <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                    <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                    <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                    <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                    <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                    <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                    <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                    <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                    <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                    <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                    <option>110</option><option>111</option><option>112</option><option>113</option>
+                    
+                  </select>  
+                </div>
+            </div>
+
+            <div class="form-group row text-center justify-content-md-center" style = "width :100%;text-align:center">
+              <div class="col-sm-6">
+                <label style = "color:white; font-size: 70%;float:left; margin:0">Player 4</label>>
+                <select name = "player_1_5" id="inputState" class="form-control" style = "height:2em;">
+                  <option>1</option>
+                  <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                  <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                  <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                  <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                  <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                  <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                  <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                  <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                  <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                  <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                  <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                  <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                  <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                  <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                  <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                  <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                  <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                  <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                  <option>110</option><option>111</option><option>112</option><option>113</option>
+                  
+                </select>  
+              </div>
+              
+              <div class="col-sm-6">
+                <label style = "color:white; font-size: 70%;float:left; margin:0">Player 5</label>>
+                <select name = "player_2_5" id="inputState" class="form-control" style = "height:2em;">
+                  <option>1</option>
+                  <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                  <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                  <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+                  <option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+                  <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+                  <option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option>
+                  <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option>
+                  <option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option>
+                  <option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option>
+                  <option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option>
+                  <option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option>
+                  <option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option>
+                  <option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option>
+                  <option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option>
+                  <option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option>
+                  <option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option>
+                  <option>98</option><option>99</option><option>100</option><option>101</option><option>102</option><option>103</option>
+                  <option>104</option><option>105</option><option>106</option><option>107</option><option>108</option><option>109</option>
+                  <option>110</option><option>111</option><option>112</option><option>113</option>
+                  
+                </select>  
+              </div>
+          </div>
+                  
+                
+          <button type="submit " class="btn btn-primary px-4" style = "background-color: #01ffa4; border:0; color :rgb(21, 37, 51);">Predict</button>
+          <button  class="btn" style = "background-color:Transparent; border: 0.05em solid #01ffa4; color:#01ffa4" onClick='route()'>Go home</button>
+        </form>
+              
+          </div>
+      </div>
+
+     <!-- Main Input For Receiving Query to our ML -->
+   
+
+   <br>
+   <div class="alert alert-primary" role="alert" style ="background-color: #303850; border:0">
+    <p style ="color:white;font-size:80%">
+     Upload bulk data as csv  
+      <!-- <form class="form-group row" style = "color:white;font-size:80%;margin-left:0.05em;" action = "/cardio/predict"  method="post"  enctype="multipart/form-data">
+    
+        <input type="file" style = "width:30em" class="form-control-file" id="exampleFormControlFile1" id = "upload" accept=".csv" onchange = "check_csv(this.value);"></button>
+        
+        <button type="submit " value = "upload" class="btn btn-primary px-4" style = "background-color: #01ffa4; border:0; color :rgb(21, 37, 51);font-size:80%; margin-top:0.4em">Predict</button>
+      </form> -->
+    <form  enctype="multipart/form-data" style  = "color:white" action="/dota/predict" method="post">
+      <input type="file" name="file" accept=".csv"  onchange = "check_file_upload(this.value)" required = "required">
+      <input id="submit_button" class = "btn"  type="submit" value="Submit"   onclick="toggle_loading()" style = "background-color: #01ffa4; border:0; color :rgb(21, 37, 51);">
+    </form>
+    
+    </p>
+    
+
+    
+  </div>
+ 
+  
+
+ </div>
+ <img class = "image-heart"  src = "https://1.bp.blogspot.com/-nZWHxn-N72Q/XIafjdKz3HI/AAAAAAAAImo/dldCM94NHqw6r50tC9v-UnTt9xHocb7eACK4BGAYYCw/s1600/icon%2Bgame%2Bvideo.png" alt="Girl in a jacket" />
+</body>
+</html>
