@@ -318,7 +318,7 @@ def route_house_readme():
 if __name__ == "__main__":
     app.secret_key = 'ineuron_secret_key'
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug = True)
+    app.run(host = "0.0.0.0", port = 3000, debug = True)
    
 # if __name__ == "__main__":
 #     app.secret_key = 'ineuron_secret_key'
