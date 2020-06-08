@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fo nts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<style>
+
+*{
+      font-family: 'Montserrat';
+      font-size:100%;
+      color:white;
+
+    }
+  .form-group{
+    width : 10vw;
+    
+  }
+
+  
+  .form-control {
+    background-color : #303850 ;
+    border :0;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+    height:4em;
+    animation:head-animation;
+    animation-duration: 0.5s;
+    box-shadow: none!important;
+  }
+  .form-cotrol:active{
+    background-color:#303850  ;
+    color:white;
+  }
+  .form-control:hover{
+    padding:0.5em;
+  }
+  .form-control:focus{
+    background-color : #252b3d ;
+    color: rgb(21, 37, 51) ;
+    color:white;
+    outline : none !important;
+    
+  }
+
+  
+  .form-control::placeholder {
+  color: #b9b9b9;
+}
+  
+
+  
+.alert-heading{
+  width : 30em;
+  height: 6em;
+  border:0;
+  overflow :hidden;
+  animation:head-animation;
+  animation-duration: 0.5s;
+  margin-top : 2vh;
+  margin-left:2vw;
+   
+}
+
+
+
+
+
+  @keyframes head-animation{
+    from {
+      opacity:0.5;
+      transform:scale(0.95, 0.95)
+    }
+    to{
+      opacity:100%;
+      transform:scale(1,1);
+    }
+  }
+
+  .btn{
+    
+    transition: 0.2s;
+    animation-delay:0.5;
+    animation-duration: 0.5s;
+    margin:1em;
+  }
+
+  .btn-download:hover{
+    padding:1em;
+
+  }
+
+  .btn:focus{
+    outline:none !important;
+  }
+
+
+
+  
+</style>
+<script>
+
+
+
+//  #fucntion to route to home
+ function route() {
+        // window.location = 'http://ec2-3-6-92-45.ap-south-1.compute.amazonaws.com:8080/';
+        window.location = "/"
+    }
+
+
+
+</script>
+</head>
+<body style = "background-color: #181e31; overflow-x:hidden; width:100vw;">
+  <!-- #hheading element -->
+  <div class = "d-flex" style = "margin-top: 1vh;">
+  <div class="alert alert-heading alert-primary alert-custom"  role="alert">
+    <h4>
+      Predicted Data Archive
+      <p style = "font-size: 50%; color : #303850">Click on the file to download the previously perdicted files</p>
+      
+      <svg class="bi bi-folder-fill" width="4em" height="4em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style= "fill:#303850; float:right; margin-top : -2em">
+        <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
+      </svg>
+    </h4>
+    
+
+    
+  </div>
+  </div>
+
+  <br>
+   <button type="submit " class="btn " style = "background-color: #01ffa4 ; border:0; color:#161e20; font-size:80%; height:3em; margin-left:2vw" onClick='route()'><p style = "margin:0 1em 0 1em ; color:rgb(21, 37, 51)">Back to home</p></button>
+<br>
+  <div class = "table-container" style = "margin-top : 2vh;margin-left:2vw;width:60vw; font-size:80%">
+   
+<br>
+   
+    Archived Predicted Files 
+    <br>
+    <br>
+
+    <!-- #list showing the files in the server  -->
+    <ol class = "archived_list" style ="list-style-type:none;">
+        {% for item in data %}
+        <button class = "btn btn-download" style = "background-color: #252b3d ; border:0;border-radius: 0.3em; color:#161e20; font-size:80%;; margin:1.5em;"><a  style = "cursor:pointer;" href = "./static/predictions/{{item}}"  download><li style = "font-size:120%; margin:1em;">{{item}}</li></a></button>
+        <br> 
+        {% endfor %}
+    </ol>
+    <p  id = "no-file"></p>
+
+</body>
+</html>

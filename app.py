@@ -6,8 +6,9 @@ from preprocess import *
 import io
 import csv
 from csv import reader
+from os import listdir
+from os.path import isfile, join
 
-import threading 
 
 UPLOAD_FOLDER = '/data'
 ALLOWED_EXTENSIONS = {'csv'}
@@ -40,6 +41,15 @@ def house():
     return render_template("house_rent.html")
 df_pred = pd.DataFrame()
 
+    
+@app.route("/archive")
+def archive ():
+    archive_files = [f for f in listdir("./static/predictions")]
+
+    return render_template("archive.html", data = archive_files)
+
+
+
 
 @app.route('/cardio/predict', methods=[ 'POST'])
 def predict_cardio():
@@ -52,6 +62,7 @@ def predict_cardio():
     #columns to  beaaded in the dataframe
     cols = ['id', 'age', 'gender', 'height', 'weight', 'ap_hi', 'ap_lo',
        'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'cardio']
+    l = len(cols)
     cols.remove("id")
     cols.remove("cardio")
     
@@ -70,6 +81,8 @@ def predict_cardio():
         for row in csv_input:
             if (m > 0):
                 row = row[0].split(";")
+                if(len(row) != l):
+                     return render_template('cardio.html', prediction_text_safe ='Csv file uploaded is not compatible for the model, please refer the guideline on the top right') 
                 row = [(float(x)) for x in row]
                 if(len(row) > 12):
                     row = row[1:12]
@@ -84,12 +97,11 @@ def predict_cardio():
 
             m = 1
         df_pred = pd.DataFrame(data = arr_pred, columns = ["prediction"])
-        df_pred.to_csv( "./predictions/cardio_prediction{}.csv".format(c))
+        df_pred.to_csv( "./static/predictions/cardio_prediction{}.csv".format(c))
         #case e=when the input is file 
         c= c + 1
-        path = "./predictions/cardio_prediction{}.csv".format(c-1)
         
-        return send_file('predictions/cardio_prediction{}.csv'.format(c-1),
+        return send_file('./static/predictions/cardio_prediction{}.csv'.format(c-1),
                      mimetype='text/csv',
                      attachment_filename='cardio_prediction{}.csv'.format(c-1),
                      as_attachment=True)
@@ -112,7 +124,7 @@ def predict_cardio():
         output = " " if(prediction == 1) else "Not"
         print(output , "is the output ")
         if(prediction == 1):
-            return render_template('cardio.html', prediction_text_safe ='You are diagonised with Cardio disese')
+            return render_template('cardio.html', prediction_text_safe ='You are diagonised with Cardio disease')
         else:
             return render_template("cardio.html", prediction_text_safe = "You are safe!!")
         # check if the post request has the file part
@@ -141,6 +153,7 @@ def predict_dota():
 
 
     cols = [x for x in range(0, 116)]
+    l = len(cols)
     #condition for file upload
     if "file" in  request.files:
         print("uploaded a csv file")
@@ -153,6 +166,8 @@ def predict_dota():
         m = 0   #flag value for dropping header
         #sending each row for prediction from csv
         for row in csv_input:
+            if(len(m) != l):
+                return render_template("dota.html", prediction_text_safe = "Csv file uploaded is not compatible for the model, please refer the guideline on the top right")
             if (m > 0):
                 
                 row = [(float(x)) for x in row]
@@ -170,12 +185,11 @@ def predict_dota():
 
             m = 1
         df_pred = pd.DataFrame(data = arr_pred, columns = ["prediction"])
-        df_pred.to_csv( "./predictions/dota_prediction{}.csv".format(d))
+        df_pred.to_csv( "./static/predictions/dota_prediction{}.csv".format(d))
         #case e=when the input is file 
         d= d + 1
-        path = "./predictions/dota_prediction{}.csv".format(d-1)
         
-        return send_file('predictions/dota_prediction{}.csv'.format(d-1),
+        return send_file('./static/predictions/dota_prediction{}.csv'.format(d-1),
                      mimetype='text/csv',
                      attachment_filename='dota_prediction{}.csv'.format(c-1),
                      as_attachment=True)
@@ -217,6 +231,7 @@ def predict_house():
        'wheelchair_access', 'electric_vehicle_charge', 'comes_furnished',
        'laundry_options', 'parking_options', 'image_url', 'description', 'lat',
        'long', 'state']
+    l = len(cols)
 
     #condition if the upload csv
     if "file" in  request.files:
@@ -230,23 +245,25 @@ def predict_house():
         m = 0   #flag value for dropping header
         #sending each row for prediction from csv
         for j, row in enumerate(csv_input):
-            if(j <= 2000):
-                if (m >= 1):
-                    for i in range(len(row)):
-                        try:
-                            row[i] = float(row[i])
-                        except :
-                            pass
-
-                    df = pd.DataFrame(data = [row], columns = cols )
+            print(len(row), l, "^^^^^^^^^^^^^")
+            if(len(row) != l):
+                return render_template('house_rent.html', prediction_text_safe ='Csv file uploaded is not compatible for the model, please refer the guideline on the top right') 
+            if (m >= 1):
+                for i in range(len(row)):
                     try:
-                        df = preprocess(df.copy()) 
-                        # print(type(df.iloc[0]["sqfeet"]))  
-                        prediction = model.predict(df)[0]  
-                        # # # #storing the prediction and appending it to arr_pred
-                        arr_pred.append(np.exp(prediction) - 1)
-                    except:
-                        arr_pred.append("{}th row has corrupted data".format(j))
+                        row[i] = float(row[i])
+                    except :
+                        pass
+
+                df = pd.DataFrame(data = [row], columns = cols )
+                try:
+                    df = preprocess(df.copy()) 
+                    # print(type(df.iloc[0]["sqfeet"]))  
+                    prediction = model.predict(df)[0]  
+                    # # # #storing the prediction and appending it to arr_pred
+                    arr_pred.append(np.exp(prediction) - 1)
+                except:
+                    arr_pred.append("{}th row has corrupted data".format(j))
                 
             m = m + 1
 
@@ -254,12 +271,12 @@ def predict_house():
         #     print(m)
         # # return render_template("house_rent.html")
         df_pred = pd.DataFrame(data = arr_pred, columns = ["HousePrice"])
-        df_pred.to_csv( "./predictions/house_prediction{}.csv".format(h))
+        df_pred.to_csv( "./static/predictions/house_prediction{}.csv".format(h))
         print(df_pred)
         h  = h + 1 
-        path = "./predictions/house_prediction{}.csv".format(h-1)
+        path = "./static/predictions/house_prediction{}.csv".format(h-1)
         
-        return send_file('predictions/house_prediction{}.csv'.format(h-1),
+        return send_file('./static/predictions/house_prediction{}.csv'.format(h-1),
                      mimetype='text/csv',
                      attachment_filename='house_prediction{}.csv'.format(h-1),
                      as_attachment=True)
