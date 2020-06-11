@@ -321,6 +321,14 @@ def route_dota_readme():
 def route_house_readme():
     return render_template("house_readme.html")
 
+<<<<<<< HEAD
+=======
+if __name__ == "__main__":
+    app.secret_key = 'ineuron_secret_key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.run(host = "0.0.0.0", port = 3000, debug = True)
+   
+>>>>>>> 87f32c29164b1f9f62131d33db654abdaaa48582
 # if __name__ == "__main__":
 #     app.secret_key = 'ineuron_secret_key'
 #     app.config['SESSION_TYPE'] = 'filesystem'
