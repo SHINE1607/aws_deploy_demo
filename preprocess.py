@@ -14,9 +14,23 @@ def preprocess_cardio(df):
     return df
 
 def preprocess_dota (df):
-    # df[df[0] == -1] = 0
+    arr = [None]*1 
+    for i in range(len(arr)):
+        team_1 = [False, False, False, False] + list(df.loc[i][3:] == 1)
+        team_1 = [i for i, x in enumerate(team_1) if x]
+        team_2 = [False, False, False, False] + list(df.loc[i][3:] == -1)
+        team_2 = [i for i, x in enumerate(team_2) if x]
+        arr[i] = team_1 +  team_2
+    cols  = ["player_{}_{}".format(i, j) for i in range(1, 3) for j in range(1, 6)]
+    df_players  = pd.DataFrame(data = arr, columns = cols)
+    
+    df = df.loc[:, 0:2]
+    df[df[0] == -1][0] = 0
     df[1] = df[1].div(100)
+    df = pd.concat([df, df_players], axis = 1)
     return df
+    
+    
 
 def preprocess(df):
     kmeans = joblib.load("./cluster_classifier")

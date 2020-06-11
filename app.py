@@ -62,9 +62,11 @@ def predict_cardio():
     #columns to  beaaded in the dataframe
     cols = ['id', 'age', 'gender', 'height', 'weight', 'ap_hi', 'ap_lo',
        'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'cardio']
-    l = len(cols)
+   
     cols.remove("id")
     cols.remove("cardio")
+    l = len(cols)
+    
     
     #checking the input file is file or form values
     if "file" in  request.files:
@@ -80,12 +82,15 @@ def predict_cardio():
         #sending each row for prediction from csv
         for row in csv_input:
             if (m > 0):
-                row = row[0].split(";")
+                #delimitting the csv file if not
+                if(len(row) == 1):
+                    row = row[0].split(";")
+                #checking if the csv is compatible
                 if(len(row) != l):
-                     return render_template('cardio.html', prediction_text_safe ='Csv file uploaded is not compatible for the model, please refer the guideline on the top right') 
+                    print(l, len(row))
+                    return render_template('cardio.html', prediction_text_safe ='Csv file uploaded is not compatible for the model, please refer the guideline on the top right') 
                 row = [(float(x)) for x in row]
-                if(len(row) > 12):
-                    row = row[1:12]
+                
                 
                 df = pd.DataFrame(data = [row], columns = cols )
                 df = preprocess_cardio(df.copy())   
@@ -99,7 +104,7 @@ def predict_cardio():
         df_pred = pd.DataFrame(data = arr_pred, columns = ["prediction"])
         df_pred.to_csv( "./static/predictions/cardio_prediction{}.csv".format(c))
         #case e=when the input is file 
-        c= c + 1
+        c = c + 1
         
         return send_file('./static/predictions/cardio_prediction{}.csv'.format(c-1),
                      mimetype='text/csv',
@@ -165,25 +170,28 @@ def predict_dota():
         csv_input = csv.reader(stream)
         m = 0   #flag value for dropping header
         #sending each row for prediction from csv
+        k = 0
         for row in csv_input:
-            if(len(m) != l):
+            if(len(row) != l):
+                print(len(row), l)
                 return render_template("dota.html", prediction_text_safe = "Csv file uploaded is not compatible for the model, please refer the guideline on the top right")
-            if (m > 0):
+            if (m >= 0):
                 
                 row = [(float(x)) for x in row]
-                row = row[-116:]
-                if(checkIfDuplicates_1(row[3:]) == True):
-                    return render_template('dota.html', prediction_text_safe='A hero can be selected by one player, heroes cannot clone!!')
+                
                 
                 df = pd.DataFrame(data = [row], columns = cols )
                 df = preprocess_dota(df.copy())   
                 final_features = df.to_numpy()
                 #storing the prediction and appending it to arr_pred
+                if(m == 0):
+                    print(final_features)
                 prediction = model.predict((final_features))[0]
                 arr_pred.append(prediction)
-
+                
 
             m = 1
+            k += 1
         df_pred = pd.DataFrame(data = arr_pred, columns = ["prediction"])
         df_pred.to_csv( "./static/predictions/dota_prediction{}.csv".format(d))
         #case e=when the input is file 
@@ -201,17 +209,16 @@ def predict_dota():
             return render_template('dota.html', prediction_text_safe='A hero can be selected by one player, heroes cannot clone!!')
         
         #list to map 113 heroes with players
-        player_map = [0]*113
-        for i in range(4, len(int_features)-1):
-            player_map[int_features[i]-1] = 1
-            player_map[int_features[i+1]-1] = -1
-        print(player_map)
-        final_data = int_features[0:3] + player_map
-        df = pd.DataFrame(data = [final_data] , columns = cols)
-        print(df.shape)
-        df = preprocess_dota(df.copy())
-        final_features = df.to_numpy()
-        prediction = model.predict((final_features))[0]
+        # player_map = [0]*113
+        # for i in range(4, len(int_features)-1):
+        #     player_map[int_features[i]-1] = 1
+        #     player_map[int_features[i+1]-1] = -1
+        # print(player_map)
+        # final_data = int_features[0:3] + player_map
+        # df = pd.DataFrame(data = [final_data] , columns = cols)
+        # print(df)
+        int_features[0] = int_features[0]/100
+        prediction = model.predict([np.array(int_features)])[0]
         print(prediction, "is the prediction")
         return render_template("dota.html", prediction_text_safe = "Team {} won the game!!!".format(prediction))
    
@@ -245,7 +252,6 @@ def predict_house():
         m = 0   #flag value for dropping header
         #sending each row for prediction from csv
         for j, row in enumerate(csv_input):
-            print(len(row), l, "^^^^^^^^^^^^^")
             if(len(row) != l):
                 return render_template('house_rent.html', prediction_text_safe ='Csv file uploaded is not compatible for the model, please refer the guideline on the top right') 
             if (m >= 1):
@@ -315,12 +321,12 @@ def route_dota_readme():
 def route_house_readme():
     return render_template("house_readme.html")
 
-if __name__ == "__main__":
-    app.secret_key = 'ineuron_secret_key'
-    app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug = True)
-   
 # if __name__ == "__main__":
 #     app.secret_key = 'ineuron_secret_key'
 #     app.config['SESSION_TYPE'] = 'filesystem'
-#     app.run(host = "0.0.0.0", port = 8080)
+#     app.run(debug = True)
+   
+if __name__ == "__main__":
+    app.secret_key = 'ineuron_secret_key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.run(host = "0.0.0.0", port = 8080)
