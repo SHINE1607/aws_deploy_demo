@@ -20,4 +20,8 @@
 * open terminal and enter "pip install -r  requirements.txt"
 * then enter "python app.py 
 * ctrl + click on the localhost link showing ion the terminal 
+###public url link
+* ec2-3-6-92-45.ap-south-1.compute.amazonaws.com:8080
+* PS: will only be accessible only if hosted from the admin system
+
 
