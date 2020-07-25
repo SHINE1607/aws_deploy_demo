@@ -1,5 +1,11 @@
 # aws_deploy_demo
 
+Hackathon project hosted by ineuron during the year 2020.The project has fundamenatally 3 
+machine learnining models based on XGboot. the project has cardio-vascular, dota game prediction winner, 
+and house rent prediction. All models are trained and binded to a single UI sysytem,  and integrated using flask 
+server and deployed on AWS EC2 instance.
+
+
 # Project directory description
 ## Folders
 * templates - Contains all the html files
